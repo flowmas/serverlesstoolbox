@@ -2,12 +2,10 @@ const express = require('express');
 const https = require('https')
 const app = express();
 
-app.listen(8080);
+
 
 const port = process.env.PORT || 8080;
-app.listen(port, () => {
-  console.log("Listening");
-}
+app.listen(port);
 
 //   return {
 //     'id': '1',
