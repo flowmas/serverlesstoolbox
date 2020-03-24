@@ -50,7 +50,7 @@ app.get('/', async (req, res) => {
   res.json(retVal);
 });
 
-async function getHours() {
+function getHours() {
     const options = {
     hostname: 'sheets.googleapis.com',
     port: 443,
