@@ -54,7 +54,6 @@ const req = https.request(options, res => {
   })
 
   req.end();
-  return await data;
 }
 
 console.log("Returned Data = " + JSON.stringify(getHours()));
