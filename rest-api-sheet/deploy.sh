@@ -6,12 +6,12 @@ GOOGLE_PROJECT_ID=sandbox-272023
 SHEET_ID=1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8
 TAB_ID=Ingredients
 
-gcloud builds submit --tag gcr.io/$GOOGLE_PROJECT_ID/slipslap-warehouse \
+gcloud builds submit --tag gcr.io/$GOOGLE_PROJECT_ID/costco-hours \
   --project=$GOOGLE_PROJECT_ID
 
-gcloud beta run deploy slipslap-warehouse \
-  --image gcr.io/$GOOGLE_PROJECT_ID/slipslap-warehouse \
+gcloud beta run deploy costco-hours \
+  --image gcr.io/$GOOGLE_PROJECT_ID/costco-hours \
   --platform managed \
-  --region us-central1 \
+  --region us-west1 \
   --set-env-vars SHEET_ID=$SHEET_ID,TAB_ID=$TAB_ID \
   --project=$GOOGLE_PROJECT_ID
