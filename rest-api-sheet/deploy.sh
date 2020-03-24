@@ -1,4 +1,4 @@
-GOOGLE_PROJECT_ID=# YOUR GCP PROJECT ID GOES HERE
+GOOGLE_PROJECT_ID=sandbox-272023
 
 # The service currently reads from the "Ingredients" tab in the Google Sheet
 # https://docs.google.com/spreadsheets/d/1rcj3SbeK_VcMOBrwwdAksJXQVoHTZHRzVOBO8A3X148/edit#gid=0
