@@ -52,7 +52,7 @@ app.get('/', async (req, res) => {
 
 async function getHours() {
   return {
-    id: 1,
+    id: '1',
     name: 'Snohomish Store',
     warehouseLocation: 'Snohomish, WA',
     ZIP: '98290',
