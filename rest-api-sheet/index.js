@@ -24,7 +24,7 @@ app.get('/:id', async (req, res) => {
 
 async function getIngredient(id) {
   const auth = await google.auth.getClient({
-    scopes: ['https://www.googleapis.com/auth/spreadsheets']
+    scopes: ['https://sheets.googleapis.com/v4/spreadsheets/1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8/values/Sheet1!B2:G8']
   });
   const api = google.sheets({version: 'v4', auth});
   const response = await api.spreadsheets.values.get({
