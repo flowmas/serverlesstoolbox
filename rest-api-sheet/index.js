@@ -50,7 +50,7 @@ app.get('/', async (req, res) => {
   res.json(hours);
 });
 
-function getHours() {
+async function getHours() {
   return {
     id: '1',
     name: 'Snohomish Store',
