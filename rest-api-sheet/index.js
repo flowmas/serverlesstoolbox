@@ -9,7 +9,7 @@ app.listen(port);
 app.get('/', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   let retVal;
-  var hours = await getHours();
+  var hours = { 'id': '1','name': 'Snohomish Store', 'warehouseLocation': 'Snohomish, WA', 'ZIP': '98290', 'date': '3/24/2020'};
   if (hours) {
     retVal = {status: 'success', data: {hours: d}};
     console.log(retVal);
@@ -20,34 +20,28 @@ app.get('/', async (req, res) => {
   res.json(retVal);
 }
         
-async function getHours() {
-  var data
-  const options = {
-    hostname: 'sheets.googleapis.com',
-    port: 443,
-    path: '/v4/spreadsheets/1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8/values/Sheet1?key=AIzaSyBZ95WJEcD7pL8QD83EyAsWSWTxoqQo2Cc',
-    method: 'GET'
-  };
+// async function getHours() {
+//   var data
+//   const options = {
+//     hostname: 'sheets.googleapis.com',
+//     port: 443,
+//     path: '/v4/spreadsheets/1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8/values/Sheet1?key=AIzaSyBZ95WJEcD7pL8QD83EyAsWSWTxoqQo2Cc',
+//     method: 'GET'
+//   };
 
-const req = https.request(options, res => {
-  console.log(`statusCode: ${res.statusCode}`);
+// const req = https.request(options, res => {
+//   console.log(`statusCode: ${res.statusCode}`);
 
-  res.on('data', d => {
-      process.stdout.write(d);
-      return d;
-     });
-   })
+//   res.on('data', d => {
+//       process.stdout.write(d);
+//       return d;
+//      });
+//    })
 
-  req.on('error', error => {
-    console.error(error);
-  })
+//   req.on('error', error => {
+//     console.error(error);
+//   })
 
-  req.end();
-  return {
-    'id': '1',
-    'name': 'Snohomish Store',
-    'warehouseLocation': 'Snohomish, WA',
-    'ZIP': '98290',
-    'date': '3/24/2020'
-  };
-}
+//   req.end();
+  
+// }
