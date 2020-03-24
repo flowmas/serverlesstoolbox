@@ -38,6 +38,7 @@ app.listen(8080);
 
 app.get('/', async (req, res) => {
   const hours = getHours();
+  res.setHeader('Content-Type', 'application/json');
   let retVal;
   if (hours) {
     retVal = {status: 'success', data: {hours: hours}};
@@ -46,7 +47,7 @@ app.get('/', async (req, res) => {
     res.status(404);
     retVal = {status: 'fail', data: {title: `hours not found`}};
   }
-  res.json(retVal);
+  res.json(hours);
 });
 
 async function getHours() {
