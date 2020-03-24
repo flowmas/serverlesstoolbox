@@ -2,9 +2,10 @@ const express = require('express');
 const https = require('https')
 const app = express();
 
-const port = 8080;
-
-app.listen(port);
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log('Costco Hours listening on port', port);
+});
 
 app.get('/', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
