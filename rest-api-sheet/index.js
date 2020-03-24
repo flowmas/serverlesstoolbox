@@ -47,7 +47,7 @@ app.get('/', async (req, res) => {
     res.status(404);
     retVal = {status: 'fail', data: {title: `hours not found`}};
   }
-  res.json(hours);
+  res.json(retVal);
 });
 
 async function getHours() {
