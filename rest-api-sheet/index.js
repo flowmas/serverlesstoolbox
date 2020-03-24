@@ -51,9 +51,28 @@ app.get('/', async (req, res) => {
 });
 
 async function getHours() {
-  const response = await $.get('https://sheets.googleapis.com/v4/spreadsheets/1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8/values/Sheet1?key=AIzaSyBZ95WJEcD7pL8QD83EyAsWSWTxoqQo2Cc');
-  const myJson = await response.json();
-  return myJson;
+    const options = {
+    hostname: 'sheets.googleapis.com',
+    port: 443,
+    path: '/v4/spreadsheets/1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8/values/Sheet1?key=AIzaSyBZ95WJEcD7pL8QD83EyAsWSWTxoqQo2Cc',
+    method: 'GET'
+  };
+
+const req = https.request(options, res => {
+  console.log(`statusCode: ${res.statusCode}`);
+
+  res.on('data', d => {
+      //process.stdout.write(d);
+      req.end();
+      return d;
+    })
+  })
+
+  req.on('error', error => {
+    console.error(error);
+  })
+
+  req.end();
 //   return {
 //     id: '1',
 //     name: 'Snohomish Store',
