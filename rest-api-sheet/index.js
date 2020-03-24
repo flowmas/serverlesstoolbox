@@ -50,13 +50,13 @@ app.get('/', async (req, res) => {
   res.json(hours);
 });
 
-async function getHours() {
+function getHours() {
   return {
     id: '1',
     name: 'Snohomish Store',
     warehouseLocation: 'Snohomish, WA',
     ZIP: '98290',
-    date: '3/24/2020',
-  }
+    date: '3/24/2020'
+  };
 }
 
