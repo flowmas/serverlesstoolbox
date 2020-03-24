@@ -51,12 +51,15 @@ app.get('/', async (req, res) => {
 });
 
 async function getHours() {
-  return {
-    id: '1',
-    name: 'Snohomish Store',
-    warehouseLocation: 'Snohomish, WA',
-    ZIP: '98290',
-    date: '3/24/2020'
-  };
+  const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8/values/Sheet1?key=AIzaSyBZ95WJEcD7pL8QD83EyAsWSWTxoqQo2Cc');
+  const myJson = await response.json();
+  return myJson;
+//   return {
+//     id: '1',
+//     name: 'Snohomish Store',
+//     warehouseLocation: 'Snohomish, WA',
+//     ZIP: '98290',
+//     date: '3/24/2020'
+//   };
 }
 
