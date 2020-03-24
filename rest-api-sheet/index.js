@@ -4,42 +4,33 @@ const app = express();
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
-  console.log('SlipSlap REST API listening on port', port);
+  console.log('Sam Wolf Costco Hours REST API listening on port', port);
 });
 
-app.get('/:id', async (req, res) => {
-  const id = 1;
-  const ingredient = await getIngredient(id);
+app.get(async (req, res) => {
+  const hours = await getHours();
   let retVal;
-  if (ingredient) {
-    retVal = {status: 'success', data: {ingredient: ingredient}};
+  if (hours) {
+    retVal = {status: 'success', data: {hours: hours}};
     console.log(retVal)
   }
   else {
     res.status(404);
-    retVal = {status: 'fail', data: {title: `Ingredient ${id} not found`}};
+    retVal = {status: 'fail', data: {title: `hours not found`}};
   }
   res.json(retVal);
 });
 
-async function getIngredient(id) {
-  const auth = await google.auth.getClient({
-    scopes: ['https://sheets.googleapis.com/v4/spreadsheets/1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8/values/Sheet1!B2:G8']
-  });
-  const api = google.sheets({version: 'v4', auth});
-  const response = await api.spreadsheets.values.get({
-    spreadsheetId: process.env.SHEET_ID,
-    range: `${process.env.TAB_ID}!A:E`
-  });
-  for (let row of response.data.values) {
-    if (row[0] == id) {
+async function getHours() {
+  const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8/values/Sheet1?key=AIzaSyBZ95WJEcD7pL8QD83EyAsWSWTxoqQo2Cc');
+  const myJson = await response.json();
+  for (let store of myJson.values) {
       return {
-        id: row[0],
-        name: row[1],
-        amount: row[2],
-        unit: row[3],
-        warehouseLocation: row[4],
+        id: store[0],
+        name: store[1],
+        warehouseLocation: store[2],
+        ZIP: store[3],
+        date: store[4],
       }
-    }
-  }
+   }
 }
