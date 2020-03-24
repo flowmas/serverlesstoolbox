@@ -3,6 +3,7 @@ const https = require('https')
 const app = express();
 
 const port = process.env.PORT || 8080;
+
 app.listen(port);
 
 app.get('/', async (req, res) => {
@@ -19,7 +20,7 @@ app.get('/', async (req, res) => {
   res.json(retVal);
 }
         
-function getHours() {
+async function getHours() {
   var data
   const options = {
     hostname: 'sheets.googleapis.com',
