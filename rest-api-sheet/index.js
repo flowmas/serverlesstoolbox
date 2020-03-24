@@ -13,6 +13,7 @@ app.get('/:id', async (req, res) => {
   let retVal;
   if (ingredient) {
     retVal = {status: 'success', data: {ingredient: ingredient}};
+    console.log(retVal)
   }
   else {
     res.status(404);
