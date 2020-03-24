@@ -8,7 +8,7 @@ app.listen(port, () => {
 });
 
 app.get('/:id', async (req, res) => {
-  const id = req.params.id;
+  const id = 1;
   const ingredient = await getIngredient(id);
   let retVal;
   if (ingredient) {
