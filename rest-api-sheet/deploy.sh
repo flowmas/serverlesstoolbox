@@ -3,7 +3,7 @@ GOOGLE_PROJECT_ID=sandbox-272023
 # The service currently reads from the "Ingredients" tab in the Google Sheet
 # https://docs.google.com/spreadsheets/d/1rcj3SbeK_VcMOBrwwdAksJXQVoHTZHRzVOBO8A3X148/edit#gid=0
 # Feel free to make a copy of that sheet and adapt it and the code to your needs.
-SHEET_ID=1rcj3SbeK_VcMOBrwwdAksJXQVoHTZHRzVOBO8A3X148
+SHEET_ID=1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8
 TAB_ID=Ingredients
 
 gcloud builds submit --tag gcr.io/$GOOGLE_PROJECT_ID/slipslap-warehouse \
