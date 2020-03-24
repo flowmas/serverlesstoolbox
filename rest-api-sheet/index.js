@@ -2,7 +2,7 @@ const express = require('express');
 const https = require('https')
 const app = express();
 
-const port = process.env.PORT || 8080;
+const port = 8080;
 
 app.listen(port);
 
