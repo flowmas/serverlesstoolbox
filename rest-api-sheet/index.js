@@ -37,7 +37,7 @@ const app = express();
 app.listen(8080);
 
 app.get('/', async (req, res) => {
-  const hours = getHours();
+  const hours = await getHours();
   res.setHeader('Content-Type', 'application/json');
   let retVal;
   if (hours) {
@@ -50,30 +50,11 @@ app.get('/', async (req, res) => {
   res.json(retVal);
 });
 
-function getHours() {
-    const options = {
-    hostname: 'sheets.googleapis.com',
-    port: 443,
-    path: '/v4/spreadsheets/1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8/values/Sheet1?key=AIzaSyBZ95WJEcD7pL8QD83EyAsWSWTxoqQo2Cc',
-    method: 'GET'
-  };
-
-const req = https.request(options, res => {
-  console.log(`statusCode: ${res.statusCode}`);
-
-  res.on('data', d => {
-      //process.stdout.write(d);
-      req.end();
-      return d;
-    })
-  })
-
-  req.on('error', error => {
-    console.error(error);
-  })
-
-  req.end();
-//   return {
+async function getHours() {
+  const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8/values/Sheet1?key=AIzaSyBZ95WJEcD7pL8QD83EyAsWSWTxoqQo2Cc');
+  const myJson = await response.json();
+  return myJson;
+  //   return {
 //     id: '1',
 //     name: 'Snohomish Store',
 //     warehouseLocation: 'Snohomish, WA',
@@ -81,4 +62,30 @@ const req = https.request(options, res => {
 //     date: '3/24/2020'
 //   };
 }
+
+// function getHours() {
+//     const options = {
+//     hostname: 'sheets.googleapis.com',
+//     port: 443,
+//     path: '/v4/spreadsheets/1qObCPH0-8zxjvG5KcbmT2iMk40KffE1LPhj0UhBFDh8/values/Sheet1?key=AIzaSyBZ95WJEcD7pL8QD83EyAsWSWTxoqQo2Cc',
+//     method: 'GET'
+//   };
+
+// const req = https.request(options, res => {
+//   console.log(`statusCode: ${res.statusCode}`);
+
+//   res.on('data', d => {
+//       //process.stdout.write(d);
+//       req.end();
+//       return d;
+//     })
+//   })
+
+//   req.on('error', error => {
+//     console.error(error);
+//   })
+
+//   req.end();
+
+//}
 
