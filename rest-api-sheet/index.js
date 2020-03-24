@@ -2,19 +2,15 @@ const { google } = require('googleapis');
 const express = require('express');
 const app = express();
 
-const port = process.env.PORT || 8080;
-app.listen(port, () => {
-  console.log('Sam Wolf Costco Hours REST API listening on port', port);
-});
+app.listen(8080);
 
-app.get(async (req, res) => {
+app.get('/', async (req, res) => {
   const hours = await getHours();
   let retVal;
   if (hours) {
     retVal = {status: 'success', data: {hours: hours}};
     console.log(retVal)
-  }
-  else {
+  } else {
     res.status(404);
     retVal = {status: 'fail', data: {title: `hours not found`}};
   }
