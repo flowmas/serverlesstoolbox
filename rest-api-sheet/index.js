@@ -15,8 +15,7 @@ app.listen(8080);
 //   };
 
 
-
-async function getHours() {
+function getHours() {
   var data
   const options = {
     hostname: 'sheets.googleapis.com',
@@ -55,5 +54,5 @@ const req = https.request(options, res => {
   return await data;
 }
 
-console.log("Returned Data = " + JSON.stringify(await getHours()));
+console.log("Returned Data = " + JSON.stringify(getHours()));
 console.log("Finished getHours()");
