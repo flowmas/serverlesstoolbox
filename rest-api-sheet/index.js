@@ -4,19 +4,19 @@ const app = express();
 app.listen(8080);
 
 app.get('/', async (req, res) => {
-  var hours; 
   // this is where you get the return value
-  getJson( function(data) { hours = data });
+  
   res.setHeader('Content-Type', 'application/json');
   let retVal;
   if (hours) {
-    retVal = {status: 'success', data: {hours: hours}};
-    console.log(retVal)
+    res.status(200);
+    getJson( function(data) { retVal = {status: 'success', hours: data} });
+    console.log(retVal);
   } else {
     res.status(404);
     retVal = {status: 'fail', data: {title: `hours not found`}};
   }
-  res.json(hours);
+  res.json(retVal);
 });
 
 function getJson( callback ) {
