@@ -4,7 +4,9 @@ const app = express();
 app.listen(8080);
 
 app.get('/', async (req, res) => {
-  const hours = getHours();
+  var hours; 
+  // this is where you get the return value
+  getJson( function(data) { hours = data });
   res.setHeader('Content-Type', 'application/json');
   let retVal;
   if (hours) {
