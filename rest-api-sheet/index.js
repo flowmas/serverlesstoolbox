@@ -9,7 +9,9 @@ app.listen(8080, () => {
 
 app.get("/", (req, res, next) => {
   getJson( function(data) {
-    res.json(data) // this is where you get the return value
+    // this is where you get the return value
+    let newData = createStoreJSON(data);
+    res.json(newData); 
   });
 });
 
@@ -36,4 +38,12 @@ function getJson( callback ) {
   }).on('error', (e) => {
     console.error(e);
   });
+}
+
+function createStoreJSON(data) {
+  var json;
+  for (let store of data.values) {
+    json += { id: store[0], storeName: store[1] };
+  }
+  return json;
 }
